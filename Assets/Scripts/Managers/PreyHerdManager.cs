@@ -17,7 +17,7 @@ public class PreyHerdManager : MonoBehaviour {
 			Prey temp = Instantiate(preyPrefab, transform.position + offset, Quaternion.identity) as Prey;
 			temp.transform.parent = transform;
 			herd.Add(temp);
-			offset += new Vector3(2, 0, 2);
+			offset += new Vector3(0, 0, 2);
 		}
 	}
 	

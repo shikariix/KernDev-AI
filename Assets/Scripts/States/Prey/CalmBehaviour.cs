@@ -11,19 +11,23 @@ public class CalmBehaviour : MonoBehaviour {
 	private float separationRadius = 5f;
 	private float herdRadius = 15f;
 
+	private float cohesionWeight = 0.5f;
+	private float separationWeight = 0.1f;
+	private float alignmentWeight = 0.5f;
+
 	void Start() {
 		thisPrey = GetComponent<Prey>();
 		herdManager = GetComponentInParent<PreyHerdManager>();
 	}
 	
 	void FixedUpdate () {
-		v1 = Cohere(thisPrey) / 100;
-		v2 = Separate(thisPrey) / 1000;
-		v3 = Align(thisPrey) / 100;
+		v1 = Cohere(thisPrey) * cohesionWeight;
+		v2 = Separate(thisPrey) * separationWeight;
+		v3 = Align(thisPrey) * alignmentWeight;
 		
 		thisPrey.velocity = thisPrey.velocity + v1 + v2 + v3;
 		
-		thisPrey.transform.position = thisPrey.transform.position + thisPrey.velocity;
+		//thisPrey.transform.position = thisPrey.transform.position + thisPrey.velocity;
 		
 		//keep within bounds
 		if (transform.position.x >= 50 || transform.position.x <= -50) {
@@ -60,7 +64,8 @@ public class CalmBehaviour : MonoBehaviour {
 			}
 		}
 
-		return c.normalized;
+		//c = c / (herdManager.herdSize - 1);
+		return c;
 	}
 	
 	//move towards general heading

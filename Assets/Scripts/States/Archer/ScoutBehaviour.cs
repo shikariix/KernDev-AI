@@ -42,8 +42,6 @@ public class ScoutBehaviour : MonoBehaviour {
 		int newX = Random.Range(-1, 2);
 		int newZ = Random.Range(-1, 2);
 		
-		Debug.Log(newX);
-		Debug.Log(newZ);
 		dir = new Vector3(newX, 0, newZ);
 	}
 }

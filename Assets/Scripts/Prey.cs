@@ -10,19 +10,16 @@ public class Prey : MonoBehaviour {
 
 	[SerializeField]
 	public Vector3 velocity;
-
+	public Rigidbody rb;
+	
 	private Vector3 temp;
 
 	void Start() {
-		velocity = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
-		
+		velocity = new Vector3(Random.Range(-1f, 2), 0, Random.Range(-1f, 2));
+		rb = GetComponent<Rigidbody>();
 	}
 
 	void Update() {
-		//rotate towards heading
-		temp = transform.rotation.eulerAngles;
-		Vector3 heading = Vector3.zero;
-		heading.y = temp.x - temp.z;
-		transform.rotation = Quaternion.Euler(heading);
+		rb.velocity = velocity;
 	}
 }
