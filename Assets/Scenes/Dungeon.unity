@@ -147,7 +147,7 @@ MonoBehaviour:
   roomMaxWidth: 7
   roomMinHeight: 4
   roomMaxHeight: 8
-  roomAmount: 3
+  roomAmount: 5
 --- !u!4 &742093568
 Transform:
   m_ObjectHideFlags: 0
