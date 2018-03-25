@@ -23,12 +23,12 @@ GameObject:
   - component: {fileID: 136928420391951232}
   - component: {fileID: 23116396303485210}
   - component: {fileID: 114627463953939186}
-  - component: {fileID: 135346981869575968}
-  - component: {fileID: 114631736585844500}
   - component: {fileID: 54952740075594326}
+  - component: {fileID: 135404866739380248}
+  - component: {fileID: 114631985021266906}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Archer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5661ac1c79d5583419e6cd33a90b26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114631736585844500
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &114631985021266906
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -121,10 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676256876575822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5183492e89bf06498752f283e20fae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 845d9bb2cdd7dfc4da23f3249a2d61df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135346981869575968
+--- !u!135 &135404866739380248
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

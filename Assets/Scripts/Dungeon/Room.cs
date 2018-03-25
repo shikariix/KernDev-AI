@@ -19,4 +19,8 @@ public class Room : MonoBehaviour {
 		roomX = maxX;
 		roomZ = maxZ;
 	}
+
+    public Vector3 GetCenter() {
+        return new Vector3(roomX + (roomWidth / 2), 0, roomZ + (roomHeight / 2));
+    }
 }
