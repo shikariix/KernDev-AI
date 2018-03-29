@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class Node {
 
-    public enum Result {
-        SUCCESS,
-        FAILURE,
-        RUNNING
-    }
+    public abstract void Init(Hashtable data);
+    public abstract Result Process();
 
-    public abstract void Init();
-    public abstract Result Process(Dictionary<string, System.Object> dataStore);
+}
 
+public enum Result {
+    SUCCESS,
+    FAILURE,
+    RUNNING
 }

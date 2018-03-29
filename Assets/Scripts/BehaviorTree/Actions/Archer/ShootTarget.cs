@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShootTarget : Node {
-    public override void Init() {
+    public override void Init(Hashtable data) {
         throw new NotImplementedException();
     }
 
-    public override Result Process(Dictionary<string, object> dataStore) {
+    public override Result Process() {
         throw new NotImplementedException();
     }
     

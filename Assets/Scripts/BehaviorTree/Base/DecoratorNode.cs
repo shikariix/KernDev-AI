@@ -1,17 +1,13 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public abstract class DecoratorNode : Node {
 
-    public Node node { get; protected set; }
+    public Node child;
 
-    public DecoratorNode(Node node) {
-        this.node = node;
-    }
-
-    public override void Init() {
-        node.Init();
+    public override void Init(Hashtable data) {
+        child.Init(data);
     }
 
 }

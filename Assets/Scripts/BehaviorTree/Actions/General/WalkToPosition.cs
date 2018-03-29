@@ -6,19 +6,20 @@ using UnityEngine;
 public class WalkToLocation : Node {
 
     private Archer agent;
-    Vector3 distance;
+    Vector3 distance, startPosition;
 
-    public override void Init() {
+    public override void Init(Hashtable data) {
         agent = GameObject.FindGameObjectWithTag("Archer").GetComponent<Archer>();
 
-        distance = agent.transform.position - agent.targetPosition;
+        startPosition = agent.transform.position;
+        distance = agent.targetPosition - agent.transform.position;
+        Debug.Log("WalkToPosition Entered");
     }
 
-    public override Result Process(Dictionary<string, object> dataStore) {
+    public override Result Process() {
         Result result = Result.RUNNING;
-        Debug.Log("WalkToPosition Entered");
-        //quick hack: move to new position in 100 steps
-        agent.transform.position += distance / 100;
+        
+        agent.transform.position = Vector3.Lerp(startPosition, agent.targetPosition, 0.1f);
 
         if (agent.transform.position == agent.targetPosition) {
             Debug.Log("Exiting WalkToPosition");
