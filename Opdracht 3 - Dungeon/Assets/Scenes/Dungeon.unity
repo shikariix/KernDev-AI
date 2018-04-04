@@ -119,6 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 742093568}
   - component: {fileID: 742093567}
+  - component: {fileID: 742093569}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -138,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 1669735048934148, guid: e3436863dd9f3034ebad2aa4eb66fa1d, type: 2}
-  treePrefab: {fileID: 1907765426554200, guid: 92487f405f0aebc4499799308a089867, type: 2}
   forestFloor: {fileID: 1669735048934148, guid: 46203d559b60fd148bd47ead2cf39d2e,
     type: 2}
   areaWidth: 50
@@ -155,12 +155,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 742093566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.6640625, y: -0.1, z: -11.90625}
+  m_LocalPosition: {x: 0, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742093569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742093566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63e60da00df70340897cd6aa025bacb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_TREES: 0
+  treePrefab: {fileID: 1907765426554200, guid: 92487f405f0aebc4499799308a089867, type: 2}
+  objects: []
+  currentTree: 0
 --- !u!1 &1072824389 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
@@ -218,6 +233,10 @@ Prefab:
     - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
       propertyPath: m_Name
       value: RigidBodyFPSController
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}

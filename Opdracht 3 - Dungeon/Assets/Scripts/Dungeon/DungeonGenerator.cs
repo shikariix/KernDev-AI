@@ -5,7 +5,6 @@ using UnityEngine;
 public class DungeonGenerator : MonoBehaviour {
 
 	public GameObject tilePrefab;
-    public GameObject treePrefab;
     public GameObject forestFloor;
 	public int areaWidth, areaHeight;
 	public int roomMinWidth, roomMaxWidth, roomMinHeight, roomMaxHeight;
@@ -21,13 +20,18 @@ public class DungeonGenerator : MonoBehaviour {
     private Path[] paths;
 	private List<GameObject> tiles = new List<GameObject>();
     private List<GameObject> trees = new List<GameObject>();
-    
+    private TreeObjectPool treePool;
+    private SpawnPlayer spawnScript;
     
 	void Start () {
 		grid = new Tile[areaWidth, areaHeight];
         GameObject floor = Instantiate(forestFloor, transform.position, Quaternion.identity);
         floor.transform.localScale = new Vector3(areaWidth, 1, areaHeight);
-		GenerateDungeon();
+        treePool = GetComponent<TreeObjectPool>();
+        treePool.CreatePool(areaWidth, areaHeight);
+        spawnScript = GameObject.FindWithTag("Player").GetComponent<SpawnPlayer>();
+
+        GenerateDungeon();
 	}
 
 	void Update() {
@@ -38,11 +42,11 @@ public class DungeonGenerator : MonoBehaviour {
 
 	private void GenerateDungeon() {
 		foreach (Transform child in transform) {
-			Destroy(child.gameObject);
+            Destroy(child.gameObject);
 		}
 
         foreach(GameObject obj in trees) {
-            Destroy(obj);
+            obj.SetActive(false);
         }
 
 		rooms = new Room[roomAmount];
@@ -70,6 +74,7 @@ public class DungeonGenerator : MonoBehaviour {
         }
         
 		SetTiles();
+        spawnScript.SpawnPlayerAt(rooms[0].GetCenter());
 	}
 
 	private void SetTiles() {
@@ -106,7 +111,7 @@ public class DungeonGenerator : MonoBehaviour {
         for (int i = 0; i < areaHeight; i++) {
             for (int j = 0; j < areaWidth; j++) {
                 if (grid[j, i] != Tile.path) {
-                    GameObject temp = Instantiate(treePrefab, new Vector3(j, 0, i), Quaternion.identity);
+                    GameObject temp = treePool.GetObject(new Vector3(j, 0, i));
                     trees.Add(temp);
                 }
             }
