@@ -1,0 +1,25 @@
+tree("Root")
+	//The animal either runs from nearby agents or follows one if it has been tamed
+	//If an agent starts taming, all other behaviour is paused
+	//If there is no agent in the same room, it stays idle
+	fallback
+		//if archer is nearby, do this
+		//tree("MoveToNewRoom")
+
+		while IsTamed
+			repeat
+				FollowLeader
+		
+		
+		tree("MoveToNewRoom")
+		WaitRandom(1.5, 5.0)
+				
+
+tree("MoveToNewRoom")
+	sequence
+		SetNewDestination
+		while not HasReachedDestination
+			repeat
+				MoveToNewRoom
+		Succeed
+
