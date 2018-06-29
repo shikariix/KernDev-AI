@@ -4,8 +4,12 @@ tree("Root")
 	//If there is no agent in the same room, it stays idle
 	fallback
 		while IsTamed
-			repeat
-				FollowLeader
+			fallback
+				while CheckForPlayer
+					repeat
+						FollowPlayer
+				repeat
+					FollowLeader
 		
 
 		while IsArcherInRange

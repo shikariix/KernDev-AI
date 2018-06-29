@@ -7,19 +7,16 @@ public class Archer : Agent {
 
     private Animal inRange;
     private Animal target;
-    private Room currentRoom;
     public List<Animal> tamedAnimals;
+    public GameObject dartPrefab;
 
     void Awake() {
         tamedAnimals = new List<Animal>();
     }
 
-    void OnCollisionEnter(Collision col) {
-        //detect current room
-        if (col.gameObject.tag == "Room") {
-            currentRoom = col.gameObject.GetComponent<Room>();
-        } else {
-            currentRoom = null;
+    void OnTriggerEnter(Collider col) {
+        if (col.gameObject.GetComponent<Animal>() != null) {
+            inRange = col.gameObject.GetComponent<Animal>();
         }
     }
 
@@ -35,6 +32,15 @@ public class Archer : Agent {
         }
         if (target == null) Task.current.Fail();
         else Task.current.Succeed();
+    }
+    
+
+    [Task]
+    void ShootAtPlayer() {
+        transform.LookAt(player.transform);
+        GameObject dart = Instantiate(dartPrefab, transform.position + Vector3.up, transform.rotation);
+        dart.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+        Task.current.Succeed();
     }
 
     [Task]

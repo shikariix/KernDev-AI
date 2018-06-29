@@ -14,7 +14,7 @@ public class MovingTasks : MonoBehaviour {
     bool pathSet = false;
 
     void Start() {
-        currentRoom = GameInfo.GetNewRoom(currentRoom);
+        currentRoom = GameInfo.GetNewRoom();
         transform.position = currentRoom.position;
         grid = FindObjectOfType<NodeGrid>();
         path = new List<Node>();
@@ -48,7 +48,7 @@ public class MovingTasks : MonoBehaviour {
 
     [Task]
     void HasReachedDestination() {
-        if (step == path.Count) {
+        if (step > path.Count) {
             step = 0;
             pathSet = false;
             Task.current.Succeed();
@@ -120,4 +120,5 @@ public class MovingTasks : MonoBehaviour {
         if (dstX > dstY) return 14 * dstY + 10 * (dstX - dstY);
         return 14 * dstX + 10 * (dstY - dstX);
     }
+    
 }

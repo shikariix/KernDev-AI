@@ -7,7 +7,6 @@ public class Animal : Agent {
 
     public bool isTamed = false;
     Archer leader;
-    Room currentRoom;
 
     [Task]
     void IsTamed() {
@@ -19,17 +18,23 @@ public class Animal : Agent {
         if (col.gameObject.tag == "Archer") {
             leader = col.gameObject.GetComponent<Archer>();
         }
+        if (col.gameObject.tag == "Player") {
+            player = col.gameObject;
+        }
     }
 
-    void OnCollisionEnter(Collision col) {
-        //detect current room
-        if (col.gameObject.tag == "Room") {
-            currentRoom = col.gameObject.GetComponent<Room>();
+    void OnTriggerExit(Collider col) {
+        if (col.gameObject.tag == "Player") {
+            player = null;
         }
     }
 
     [Task]
     void CheckForArcher() {
+        if (currentRoom == null) {
+            Task.current.Fail();
+            return;
+        }
         for (int i = 0; i < currentRoom.currentVisitors.Count; i++) {
             if (currentRoom.currentVisitors[i].GetComponent<Archer>() != null) {
                 Task.current.Succeed();
@@ -42,7 +47,7 @@ public class Animal : Agent {
 
     [Task]
     void IsArcherInRange() {
-        if (leader != null) Task.current.Succeed();
+        if (leader != null && !isTamed) Task.current.Succeed();
         else Task.current.Fail();
     }
 
@@ -58,8 +63,18 @@ public class Animal : Agent {
         transform.LookAt(leader.transform);
         float distance = Vector3.Distance(transform.position, leader.transform.position);
         
-        if (distance > 5) MoveToNextNode(leader.transform.position); //not smooth at all but it works I guess
+        if (distance > 3) MoveToNextNode(leader.transform.position); //not smooth at all but it works I guess
         //transform.position = Vector3.Lerp(transform.position, leader.transform.position, 0.05f);
+        if (player != null) Task.current.Fail();
+        else Task.current.Succeed();
+    }
+
+    [Task]
+    void FollowPlayer() {
+        transform.LookAt(player.transform);
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance > 2) MoveToNextNode(player.transform.position); //not smooth at all but it works I guess
         Task.current.Succeed();
     }
 }

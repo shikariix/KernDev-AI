@@ -9,6 +9,8 @@ public class NodeGrid : MonoBehaviour {
     public LayerMask walkableMask, unwalkableMask;
     Node[,] grid;
 
+    private DungeonGenerator dungeonGenerator;
+
     public List<Node> path;
 
     public int MaxSize {
@@ -24,8 +26,9 @@ public class NodeGrid : MonoBehaviour {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
+        dungeonGenerator = GetComponent<DungeonGenerator>();
 
-        CreateGrid();
+        StartCoroutine(CreateGrid());
     }
 
     void OnDrawGizmos() {
@@ -35,13 +38,16 @@ public class NodeGrid : MonoBehaviour {
                 if (path != null) {
                     if (path.Contains(n)) Gizmos.color = Color.black;
                 }
-                if (n.walkable) Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeDiameter - .1f));
-                
+                if (n.walkable) {
+                    Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeDiameter - .1f));
+                }
             }
         }
     }
 
-    void CreateGrid() {
+    IEnumerator CreateGrid() {
+        //need to wait or else the room sizes aren't set yet
+        yield return null;
         grid = new Node[gridSizeX, gridSizeY];
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
 

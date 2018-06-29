@@ -2,6 +2,10 @@ tree("Root")
 	//Constantly patrol the rooms
 	//if it sees an animal, chase it
 	fallback
+		while CheckForPlayer
+			sequence
+				Wait(1.0)
+				ShootAtPlayer
 		tree("ChaseAnimal")
 		tree("MoveToNewRoom")
 		
@@ -22,7 +26,9 @@ tree("ChaseAnimal")
 tree("MoveToNewRoom")
 	sequence
 		SetNewRoomDestination
+		//do an extra check so taming can happen while on a path
 		while not CheckForAnimal
-			while not HasReachedDestination
-				repeat
-					MoveToNewRoom
+			while not CheckForPlayer
+				while not HasReachedDestination
+					repeat
+						MoveToNewRoom

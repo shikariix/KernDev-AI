@@ -40,7 +40,7 @@ public class DungeonGenerator : MonoBehaviour {
 		}
 	}
 
-	private void GenerateDungeon() {
+	public void GenerateDungeon() {
 		foreach (Transform child in transform) {
             Destroy(child.gameObject);
 		}
@@ -60,6 +60,7 @@ public class DungeonGenerator : MonoBehaviour {
 			int roomZ = Random.Range(0, areaHeight - roomHeight);
 			GameObject room = new GameObject {name = "Room " + (k + 1)};
 			room.transform.parent = transform;
+            room.gameObject.tag = "Room";
 			rooms[k] = room.AddComponent<Room>();
 			rooms[k].MakeRoom(roomWidth, roomHeight, roomX, roomZ);
 

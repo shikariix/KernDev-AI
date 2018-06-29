@@ -6,14 +6,14 @@ public class GameInfo : MonoBehaviour {
 
     static Room[] rooms;
 
-	// Use this for initialization
-	void Start () {
+    static void FindRooms() {
         rooms = FindObjectsOfType<Room>();
         Debug.Log("Active rooms: " + rooms.Length);
-	}
+    }
 	
     //get room if there is no current room
     public static Room GetNewRoom() {
+        if (rooms == null) FindRooms();
         return rooms[Random.Range(0, rooms.Length)];
     }
 

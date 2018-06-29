@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room_Alt : MonoBehaviour {
+public class Room_Alt : Room {
 
     //size & placement of room
     public int maxWidth;
     public int maxDepth;
-    public Vector3 position;
-
-    public List<GameObject> currentVisitors;
 
     // Use this for initialization
     void Start() {

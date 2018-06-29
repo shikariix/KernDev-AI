@@ -109,7 +109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf36074325be254fa49994bb0ba40e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1669735048934148, guid: e3436863dd9f3034ebad2aa4eb66fa1d, type: 2}
+  roomX: 0
+  roomZ: 0
+  roomWidth: 0
+  roomHeight: 0
+  paths: []
+  currentVisitors: []
+  position: {x: 0, y: 0, z: 0}
   maxWidth: 0
   maxDepth: 0
-  position: {x: 0, y: 0, z: 0}
-  currentVisitors: []

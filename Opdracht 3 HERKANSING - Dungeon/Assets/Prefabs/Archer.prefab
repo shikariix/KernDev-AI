@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114618070305160190}
   - component: {fileID: 114755843288367094}
   - component: {fileID: 54890977484580076}
+  - component: {fileID: 135043069519141636}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Archer
@@ -70,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 1854323186286248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4781337284157354}
   m_Father: {fileID: 0}
@@ -165,9 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingTasks: {fileID: 0}
-  step: 0
+  currentRoom: {fileID: 0}
+  player: {fileID: 0}
   tamedAnimals: []
-  previousPos: {x: 0, y: 0, z: 0}
+  dartPrefab: {fileID: 1804136464177920, guid: 80da0b2326e4929439250f160edcef82, type: 2}
 --- !u!114 &114618070305160190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +193,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd60205c846242a45a8dc35de8408510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135043069519141636
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854323186286248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136629717327363312
 CapsuleCollider:
   m_ObjectHideFlags: 1
