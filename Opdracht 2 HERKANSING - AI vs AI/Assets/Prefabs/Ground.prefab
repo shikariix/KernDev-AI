@@ -109,4 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf36074325be254fa49994bb0ba40e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxWidth: 0
+  maxDepth: 0
   position: {x: 0, y: 0, z: 0}
+  currentVisitors: []
