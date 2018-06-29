@@ -17,7 +17,7 @@ public class DungeonGenerator : MonoBehaviour {
     
     private Tile[,] grid;
 	private Room[] rooms;
-    private Path[] paths;
+    private DungeonPath[] paths;
 	private List<GameObject> tiles = new List<GameObject>();
     private List<GameObject> trees = new List<GameObject>();
     private TreeObjectPool treePool;
@@ -40,7 +40,7 @@ public class DungeonGenerator : MonoBehaviour {
 		}
 	}
 
-	private void GenerateDungeon() {
+	public void GenerateDungeon() {
 		foreach (Transform child in transform) {
             Destroy(child.gameObject);
 		}
@@ -50,7 +50,7 @@ public class DungeonGenerator : MonoBehaviour {
         }
 
 		rooms = new Room[roomAmount];
-        paths = new Path[roomAmount-1];
+        paths = new DungeonPath[roomAmount-1];
 		
 		//generate positions and sizes for each room; generation should be done in the room itself, will work on that
 		for (int k = 0; k < roomAmount; k++) {
@@ -60,6 +60,7 @@ public class DungeonGenerator : MonoBehaviour {
 			int roomZ = Random.Range(0, areaHeight - roomHeight);
 			GameObject room = new GameObject {name = "Room " + (k + 1)};
 			room.transform.parent = transform;
+            room.gameObject.tag = "Room";
 			rooms[k] = room.AddComponent<Room>();
 			rooms[k].MakeRoom(roomWidth, roomHeight, roomX, roomZ);
 
@@ -67,7 +68,7 @@ public class DungeonGenerator : MonoBehaviour {
             if (k > 0) {
                 GameObject path = new GameObject {name = "Path " + (k)};
                 path.transform.parent = rooms[k-1].transform;
-                paths[k-1] = path.AddComponent<Path>();
+                paths[k-1] = path.AddComponent<DungeonPath>();
                 rooms[k].paths.Add(paths[k-1]);
                 paths[k-1].CreatePath(rooms[k-1], rooms[k]);
             }
@@ -95,7 +96,7 @@ public class DungeonGenerator : MonoBehaviour {
             }
         }
         
-        foreach (Path p in paths) {
+        foreach (DungeonPath p in paths) {
             foreach (Vector2 tilePos in p.tilesPositions) {
                 //make sure the tile isnt taken yet
                 if (grid[(int)tilePos.x, (int)tilePos.y] != Tile.path) {

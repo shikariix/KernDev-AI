@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HerdManager
-  - Tree
-  - Prey
+  - Animal
   - Archer
   - Room
   layers:
@@ -18,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Unwalkable
+  - Walkable
   - 
   - 
   - 
