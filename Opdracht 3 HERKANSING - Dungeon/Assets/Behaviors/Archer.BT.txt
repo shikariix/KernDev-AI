@@ -1,0 +1,28 @@
+tree("Root")
+	//Constantly patrol the rooms
+	//if it sees an animal, chase it
+	fallback
+		tree("ChaseAnimal")
+		tree("MoveToNewRoom")
+		
+	
+tree("ChaseAnimal")
+	//check distance to animal
+	//if it is close enough, stop chasing and start taming	
+	sequence
+		CheckForAnimal
+		fallback
+			while not AnimalInRange
+				repeat
+					ChaseAnimal
+			sequence
+				Wait(2.0)
+				TameAnimal	
+
+tree("MoveToNewRoom")
+	sequence
+		SetNewRoomDestination
+		while not CheckForAnimal
+			while not HasReachedDestination
+				repeat
+					MoveToNewRoom
